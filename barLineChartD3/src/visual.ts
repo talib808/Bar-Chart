@@ -35,7 +35,7 @@ import VisualUpdateOptions = powerbi.extensibility.visual.VisualUpdateOptions;
 import IVisual = powerbi.extensibility.visual.IVisual;
 
 import { VisualFormattingSettingsModel } from "./settings";
-import * as d3 from "d3"; // Import D3.js
+import * as d3 from "d3"; 
 
 export class Visual implements IVisual {
     private target: HTMLElement;
@@ -51,7 +51,7 @@ export class Visual implements IVisual {
     public update(options: VisualUpdateOptions) {
         this.formattingSettings = this.formattingSettingsService.populateFormattingSettingsModel(VisualFormattingSettingsModel, options.dataViews[0]);
 
-        // Clear the previous content before re-rendering
+       
         d3.select(this.target).selectAll("*").remove();
 
         // Stubbed data for now
@@ -67,7 +67,7 @@ export class Visual implements IVisual {
             width = options.viewport.width - margin.left - margin.right,
             height = options.viewport.height - margin.top - margin.bottom;
 
-        // Create the SVG container
+        // Created the SVG container
         const svg = d3.select(this.target)
             .append("svg")
             .attr("width", width + margin.left + margin.right)
@@ -75,7 +75,7 @@ export class Visual implements IVisual {
             .append("g")
             .attr("transform", `translate(${margin.left},${margin.top})`);
 
-        // Create the scales
+        // Created the scales
         const x = d3.scaleBand()
             .domain(data.map(d => d.category))
             .range([0, width])
@@ -127,16 +127,16 @@ export class Visual implements IVisual {
             .attr("stroke", "rgba(255, 99, 132, 1)")
             .attr("stroke-width", 2);
 
-        // Add X axis
+        // Added X axis
         svg.append("g")
             .attr("transform", `translate(0, ${height})`)
             .call(d3.axisBottom(x));
 
-        // Add Y axis for Bar
+        // Added Y axis for Bar
         svg.append("g")
             .call(d3.axisLeft(yBar));
 
-        // Add Y axis for Line (on the right side)
+        // Added Y axis for Line (on the right side)
         svg.append("g")
             .attr("transform", `translate(${width}, 0)`)
             .call(d3.axisRight(yLine));
