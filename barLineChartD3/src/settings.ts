@@ -65,10 +65,16 @@ class DataPointCardSettings extends FormattingSettingsCard {
         displayName: "Text Size",
         value: 12
     });
-
+    
+  lineChartColor = new formattingSettings.ColorPicker({
+        name: "lineChartColor",
+        displayName: "Line Chart Color",
+        value: { value: "" } 
+    });
+    
     name: string = "dataPoint";
     displayName: string = "Data colors";
-    slices: Array<FormattingSettingsSlice> = [this.defaultColor, this.showAllDataPoints, this.fill, this.fillRule, this.fontSize];
+    slices: Array<FormattingSettingsSlice> = [this.defaultColor, this.showAllDataPoints, this.fill, this.fillRule, this.fontSize, this.lineChartColor];
 }
 
 /**
